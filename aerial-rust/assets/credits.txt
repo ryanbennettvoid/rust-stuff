@@ -1,0 +1,4 @@
+bg-music.mp3: https://www.youtube.com/watch?v=N3fLSxHrtJI
+Pixeled.ttf: https://www.dafont.com/pixeled.font
+blip2.mp3: https://pixabay.com/sound-effects/woosh-1-84800/
+jet.png: Ryan Bennett (derivative)

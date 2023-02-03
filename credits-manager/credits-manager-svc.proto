@@ -1,0 +1,40 @@
+
+syntax = "proto3";
+option go_package = "/credits-manager/pb";
+
+service CreditsManager {
+  rpc Topup(TopupRequest) returns (TopupResponse);
+  rpc Consume(ConsumeRequest) returns (ConsumeResponse);
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
+}
+
+message TopupRequest {
+  string userId = 1;
+  uint32 amount = 2;
+  string cause = 3;
+}
+
+message TopupResponse {
+  string userId = 1;
+  uint32 balance = 2;
+}
+
+message ConsumeRequest {
+  string userId = 1;
+  uint32 amount = 2;
+  string cause = 3;
+}
+
+message ConsumeResponse {
+  string userId = 1;
+  uint32 balance = 2;
+}
+
+message GetBalanceRequest {
+  string userId = 1;
+}
+
+message GetBalanceResponse {
+  string userId = 1;
+  uint32 balance = 2;
+}

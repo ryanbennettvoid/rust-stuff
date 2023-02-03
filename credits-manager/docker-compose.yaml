@@ -1,0 +1,52 @@
+version: "3"
+services:
+
+  credits-manager:
+    container_name: credits-manager
+    build:
+      dockerfile: ./docker/credits-manager-dev.Dockerfile
+      context: .
+    entrypoint: cargo watch -x 'run --bin credits-manager'
+    privileged: true
+    tty: true
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PORT=9010
+    ports:
+      - "9010:9010"
+    volumes:
+      - .:/root
+    mem_limit: 2048m
+    networks:
+      - demo-network
+
+  proto:
+    container_name: proto
+    build:
+      dockerfile: ./docker/proto.Dockerfile
+      context: .
+    command: protoc --rust_out ./src credits-manager-svc.proto
+    privileged: true
+    tty: true
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - .:/root
+
+  proto-go:
+    container_name: proto-go
+    build:
+      dockerfile: ./docker/proto-go.Dockerfile
+      context: .
+    command: protoc --go_out=./pkg/pb --go_opt=paths=source_relative --go-grpc_out=./pkg/pb --go-grpc_opt=paths=source_relative credits-manager-svc.proto
+    privileged: true
+    tty: true
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - .:/root
+
+networks:
+  demo-network:
+    name: demo-network

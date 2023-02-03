@@ -1,0 +1,18 @@
+[package]
+name = "credits-manager"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+protobuf = "3.1.0"
+tonic = "0.7.2"
+prost = "0.10.4"
+tonic-web  = "0.3.0"
+tokio = { version = "1.20.0", features = ["full"] }
+tokio-postgres = { version = "0.7.6", features = ["with-uuid-1"] }
+uuid = "1.1.2"
+
+[build-dependencies]
+tonic-build = "0.7.2"
